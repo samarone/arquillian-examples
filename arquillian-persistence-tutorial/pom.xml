@@ -220,39 +220,23 @@
 				<pluginManagement>
 					<plugins>
 						<plugin>
-							<groupId>org.eclipse.m2e</groupId>
-							<artifactId>lifecycle-mapping</artifactId>
-							<version>1.0.0</version>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-dependency-plugin</artifactId>
+							<version>2.0.4</version>
+							<goals>
+								<goal>unpack</goal>
+							</goals>
 							<configuration>
-								<lifecycleMappingMetadata>
-									<pluginExecutions>
-										<pluginExecution>
-											<pluginExecutionFilter>
-												<groupId>org.apache.maven.plugins</groupId>
-												<artifactId>maven-dependency-plugin</artifactId>
-												<versionRange>[2.0,)</versionRange>
-												<goals>
-													<goal>unpack</goal>
-												</goals>
-												<configuration>
-													<artifactItems>
-														<artifactItem>
-															<groupId>org.jboss.as</groupId>
-															<artifactId>jboss-as-dist</artifactId>
-															<version>7.1.1.Final</version>
-															<type>zip</type>
-															<overWrite>false</overWrite>
-															<outputDirectory>target</outputDirectory>
-														</artifactItem>
-													</artifactItems>
-												</configuration>
-											</pluginExecutionFilter>
-											<action>
-												<execute />
-											</action>
-										</pluginExecution>
-									</pluginExecutions>
-								</lifecycleMappingMetadata>
+								<artifactItems>
+									<artifactItem>
+										<groupId>org.jboss.as</groupId>
+										<artifactId>jboss-as-dist</artifactId>
+										<version>7.1.1.Final</version>
+										<type>zip</type>
+										<overWrite>false</overWrite>
+										<outputDirectory>target</outputDirectory>
+									</artifactItem>
+								</artifactItems>
 							</configuration>
 						</plugin>
 					</plugins>
