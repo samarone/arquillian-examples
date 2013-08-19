@@ -31,10 +31,10 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
-			<plugin>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.12</version>
-			</plugin>
+<!-- 			<plugin> -->
+<!-- 				<artifactId>maven-surefire-plugin</artifactId> -->
+<!-- 				<version>2.12</version> -->
+<!-- 			</plugin> -->
 		</plugins>
 	</build>
 	<dependencyManagement>
@@ -86,9 +86,9 @@
 	<profiles>
 		<profile>
 			<id>arquillian-glassfish-embedded</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
+			<!-- <activation> -->
+			<!-- <activeByDefault>true</activeByDefault> -->
+			<!-- </activation> -->
 			<dependencies>
 				<dependency>
 					<groupId>org.jboss.arquillian.container</groupId>
@@ -120,24 +120,24 @@
 						<directory>src/test/resources-glassfish-embedded</directory>
 					</testResource>
 				</testResources>
-				<!-- <plugins> -->
-				<!-- The surefire plugin is configured to pass a system property to -->
-				<!-- GlassFish to retarget the derby log file -->
-				<!-- <plugin> -->
-				<!-- <artifactId>maven-surefire-plugin</artifactId> -->
-				<!-- <version>2.12</version> -->
-				<!-- <configuration> -->
-				<!-- <systemPropertyVariables> -->
-				<!-- <java.util.logging.config.file> -->
-				<!-- ${project.build.testOutputDirectory}/logging.properties -->
-				<!-- </java.util.logging.config.file> -->
-				<!-- <derby.stream.error.file> -->
-				<!-- ${project.build.directory}/derby.log -->
-				<!-- </derby.stream.error.file> -->
-				<!-- </systemPropertyVariables> -->
-				<!-- </configuration> -->
-				<!-- </plugin> -->
-				<!-- </plugins> -->
+				<plugins>
+					<!-- The surefire plugin is configured to pass a system property to
+					GlassFish to retarget the derby log file -->
+					<plugin>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>2.12</version>
+						<configuration>
+							<systemPropertyVariables>
+								<java.util.logging.config.file>
+									${project.build.testOutputDirectory}/logging.properties
+								</java.util.logging.config.file>
+<!-- 								<derby.stream.error.file> -->
+<!-- 									${project.build.directory}/derby.log -->
+<!-- 								</derby.stream.error.file> -->
+							</systemPropertyVariables>
+						</configuration>
+					</plugin>
+				</plugins>
 			</build>
 		</profile>
 		<profile>
@@ -178,6 +178,9 @@
 			</build>
 		</profile>
 		<profile>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 			<id>arquillian-jbossas-managed</id>
 			<dependencies>
 				<dependency>

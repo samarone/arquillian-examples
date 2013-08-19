@@ -143,7 +143,7 @@ public class GamePersistenceTest {
         criteria.select(game);
         // TIP: If you don't want to use the JPA 2 Metamodel,
         // you can change the get() method call to get("id")
-        criteria.orderBy(builder.asc(game.get(Game_.id)));
+        criteria.orderBy(builder.asc(game.get("id")));
         // No WHERE clause, which implies select all
 
         // when
