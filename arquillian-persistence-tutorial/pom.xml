@@ -31,10 +31,10 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
-<!-- 			<plugin> -->
-<!-- 				<artifactId>maven-surefire-plugin</artifactId> -->
-<!-- 				<version>2.12</version> -->
-<!-- 			</plugin> -->
+			<!-- <plugin> -->
+			<!-- <artifactId>maven-surefire-plugin</artifactId> -->
+			<!-- <version>2.12</version> -->
+			<!-- </plugin> -->
 		</plugins>
 	</build>
 	<dependencyManagement>
@@ -121,8 +121,8 @@
 					</testResource>
 				</testResources>
 				<plugins>
-					<!-- The surefire plugin is configured to pass a system property to
-					GlassFish to retarget the derby log file -->
+					<!-- The surefire plugin is configured to pass a system property to 
+						GlassFish to retarget the derby log file -->
 					<plugin>
 						<artifactId>maven-surefire-plugin</artifactId>
 						<version>2.12</version>
@@ -131,9 +131,9 @@
 								<java.util.logging.config.file>
 									${project.build.testOutputDirectory}/logging.properties
 								</java.util.logging.config.file>
-<!-- 								<derby.stream.error.file> -->
-<!-- 									${project.build.directory}/derby.log -->
-<!-- 								</derby.stream.error.file> -->
+								<!-- <derby.stream.error.file> -->
+								<!-- ${project.build.directory}/derby.log -->
+								<!-- </derby.stream.error.file> -->
 							</systemPropertyVariables>
 						</configuration>
 					</plugin>
@@ -217,32 +217,46 @@
 						<directory>src/test/resources-jbossas-managed</directory>
 					</testResource>
 				</testResources>
-				<plugins>
-					<plugin>
-						<artifactId>maven-dependency-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>unpack</id>
-								<phase>process-test-classes</phase>
-								<goals>
-									<goal>unpack</goal>
-								</goals>
-								<configuration>
-									<artifactItems>
-										<artifactItem>
-											<groupId>org.jboss.as</groupId>
-											<artifactId>jboss-as-dist</artifactId>
-											<version>7.1.1.Final</version>
-											<type>zip</type>
-											<overWrite>false</overWrite>
-											<outputDirectory>target</outputDirectory>
-										</artifactItem>
-									</artifactItems>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
+				<pluginManagement>
+					<plugins>
+						<plugin>
+							<groupId>org.eclipse.m2e</groupId>
+							<artifactId>lifecycle-mapping</artifactId>
+							<version>1.0.0</version>
+							<configuration>
+								<lifecycleMappingMetadata>
+									<pluginExecutions>
+										<pluginExecution>
+											<pluginExecutionFilter>
+												<groupId>org.apache.maven.plugins</groupId>
+												<artifactId>maven-dependency-plugin</artifactId>
+												<versionRange>[2.0,)</versionRange>
+												<goals>
+													<goal>unpack</goal>
+												</goals>
+												<configuration>
+													<artifactItems>
+														<artifactItem>
+															<groupId>org.jboss.as</groupId>
+															<artifactId>jboss-as-dist</artifactId>
+															<version>7.1.1.Final</version>
+															<type>zip</type>
+															<overWrite>false</overWrite>
+															<outputDirectory>target</outputDirectory>
+														</artifactItem>
+													</artifactItems>
+												</configuration>
+											</pluginExecutionFilter>
+											<action>
+												<execute />
+											</action>
+										</pluginExecution>
+									</pluginExecutions>
+								</lifecycleMappingMetadata>
+							</configuration>
+						</plugin>
+					</plugins>
+				</pluginManagement>
 			</build>
 		</profile>
 		<profile>
